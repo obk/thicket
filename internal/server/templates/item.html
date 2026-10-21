@@ -1,0 +1,15 @@
+{{template "top" .}}
+<article class="item">
+  <h1>{{or .Item.Title "Untitled"}}</h1>
+  <p class="meta">
+    <a href="/feeds/{{.Item.FeedID}}/">{{.Item.Feed}}</a>
+    {{- with .Item.Author}} · {{.}}{{end}} · {{.Item.Date}}
+  </p>
+  <div class="content">
+  {{.Item.Content}}
+  </div>
+  {{- with .Item.Link}}
+  <p class="original"><a href="{{.}}">Read it on {{$.Item.Original}} ↗</a></p>
+  {{- end}}
+</article>
+{{template "bottom" .}}

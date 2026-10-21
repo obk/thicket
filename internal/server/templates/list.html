@@ -1,0 +1,43 @@
+{{template "top" .}}
+{{- with .Feed}}
+<section class="feed-head">
+  <h1>{{.Name}}</h1>
+  <p class="meta">
+    {{- with .Site}}<a href="{{.}}">{{host .}}</a> · {{end -}}
+    <a href="{{.URL}}">Feed</a>
+    {{- if .Note}} · <span class="problem">Failing: {{.Note}}</span>{{end -}}
+  </p>
+</section>
+{{- end}}
+
+{{- range .Days}}
+<section class="day">
+  <h2>{{.Name}}</h2>
+  <ol class="items">
+  {{- range .Items}}
+    <li>
+      <h3>{{if .Here}}<a href="/items/{{.ID}}/">{{or .Title "Untitled"}}</a>{{else}}<a href="{{.Link}}">{{or .Title "Untitled"}}</a>{{end}}</h3>
+      <p class="meta">
+        {{- if not $.Feed}}<a href="/feeds/{{.FeedID}}/">{{.Feed}}</a> · {{end -}}
+        {{- with .Author}}{{.}} · {{end -}}
+        <time>{{.Time}}</time>
+      </p>
+      {{- with .Summary}}
+      <p class="summary">{{.}}</p>
+      {{- end}}
+    </li>
+  {{- end}}
+  </ol>
+</section>
+{{- else}}
+<p class="empty">{{.Empty}}</p>
+{{- end}}
+
+{{- if or .Newer .Older}}
+<nav class="pages">
+  {{- if .Newer}}<a href="{{.Newer}}">← Newer</a>{{else}}<span></span>{{end}}
+  {{- if .Older}}<a href="{{.Older}}">Older →</a>{{end}}
+</nav>
+{{- end}}
+
+{{template "bottom" .}}

@@ -1,0 +1,30 @@
+{{define "top" -}}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{if ne .Title .Site}}{{.Title}} · {{end}}{{.Site}}</title>
+<style>{{.Style}}</style>
+</head>
+<body>
+<main>
+
+<header>
+  <a class="site" href="/">{{.Site}}</a>
+  <nav>
+    <a href="/"{{if eq .Here "latest"}} aria-current="page"{{end}}>Latest</a>
+    <a href="/feeds/"{{if eq .Here "feeds"}} aria-current="page"{{end}}>Feeds</a>
+  </nav>
+</header>
+{{end}}
+
+{{define "bottom" -}}
+<footer>
+  Made with <a href="https://github.com/obk/thicket">thicket</a>
+</footer>
+
+</main>
+</body>
+</html>
+{{end}}

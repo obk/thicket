@@ -1,0 +1,28 @@
+# spinney's releases, a few feeds to read with them, and two full of
+# pictures, to see how items with images look.
+title = "thicket"
+listen = "127.0.0.1:8080"
+interval = "30m"
+
+[[feed]]
+url = "https://github.com/obk/canopy/releases.atom"
+name = "canopy releases"
+
+[[feed]]
+url = "https://go.dev/blog/feed.atom"
+
+[[feed]]
+url = "https://lwn.net/headlines/rss"
+
+[[feed]]
+url = "https://jvns.ca/atom.xml"
+
+[[feed]]
+url = "https://danluu.com/atom.xml"
+
+[[feed]]
+url = "https://www.thisiscolossal.com/feed/"
+
+[[feed]]
+url = "https://www.designboom.com/feed/"
+name = "designboom"

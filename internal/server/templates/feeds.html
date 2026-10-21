@@ -1,0 +1,23 @@
+{{template "top" .}}
+<h1>Feeds</h1>
+<p class="meta">Each one fetched every {{.Interval}}.</p>
+
+<ul class="feeds">
+{{- range .Feeds}}
+  <li>
+    <h2><a href="/feeds/{{.ID}}/">{{.Name}}</a></h2>
+    <p class="meta">
+      {{- with .Site}}<a href="{{.}}">{{host .}}</a> · {{end -}}
+      {{.Items}} item{{if ne .Items 1}}s{{end}} ·
+      {{if .Note -}}
+        <span class="problem">Failing: {{.Note}}{{if not .Fetched.IsZero}}, last fetched {{ago .Fetched $.Now}} ago{{end}}</span>
+      {{- else if .Fetched.IsZero -}}
+        Not fetched yet
+      {{- else -}}
+        Fetched {{ago .Fetched $.Now}} ago
+      {{- end}}
+    </p>
+  </li>
+{{- end}}
+</ul>
+{{template "bottom" .}}
